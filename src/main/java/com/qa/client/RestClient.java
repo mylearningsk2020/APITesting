@@ -16,6 +16,8 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.testng.Assert;
 
+import com.qa.testcases.responseJsonObject;
+
 
 
 
@@ -26,7 +28,8 @@ import org.testng.Assert;
  */
 public class RestClient{
 	
-	public JSONObject responsejson;
+	public JSONObject responseJson;
+	
 	
 	
 	public void get(String url) throws ClientProtocolException, IOException {		
@@ -45,6 +48,15 @@ public class RestClient{
   	   System.out.println("Response JSON from API-->" + responseJson);  	   
   	   
   	   //Last Name validation
+  	   
+  	 responseJsonObject robj = new responseJsonObject();
+	   String lname=robj.setLast(responseJson.getString("last"));
+	   if(lname.length()>=10) {
+		   System.out.println("Name exceeds 10 characters threshold");}
+	   else {
+		   System.out.println("Name field meets the defined criteria");
+	   }
+	   
 	   System.out.println(responseJson.get("last"));   
  	   Assert.assertEquals(responseJson.get("last"),"Doe");
   	  
@@ -58,17 +70,15 @@ public class RestClient{
   	   Assert.assertEquals(responseJson.get("name"),"John");
   	   
   	   //Id validation
-  	     	   
+  	    	     	   
   	   System.out.println(responseJson.get("id"));
   	   Assert.assertEquals(responseJson.get("id"), 1);
   	   
   	   //Age validation
  	   System.out.println(responseJson.get("age"));
  	   Assert.assertEquals(responseJson.get("age"),40);
-  	
 
-  	   //System.out.println(jsonpath.get("City"));
-  	   
+  	   	   
   	   //Headers
   	   Header[] headersArray = httpResponse.getAllHeaders();
   	   HashMap<String,String> allHeaders = new HashMap<String,String>();
@@ -79,12 +89,17 @@ public class RestClient{
   	   
   	   System.out.println("Headers Arry ---> " + allHeaders);
   	   
-  	   
-  	   //Response time validation
-  	  
-	  
+  	   		  
+  	  }
+
 		
+
+	
 	}
+		
+	
+	
+	
 	
 
-}
+

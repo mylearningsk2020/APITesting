@@ -15,17 +15,17 @@ public class responseJsonObject {
 	public String gender;
 	public Integer age;
 	
-	public Integer getId() {
+	public Integer getId(Object object) {
 		return id;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Object object) {
+		this.id = (Integer) object;
 	}
 	public String getLast() {
 		return last;
 	}
-	public void setLast(String last) {
-		this.last = last;
+	public String setLast(String last) {
+		return this.last = last;
 	}
 	public String getName() {
 		return name;
@@ -42,8 +42,8 @@ public class responseJsonObject {
 	public Integer getAge() {
 		return age;
 	}
-	public void setAge(Integer age) {
-		this.age = age;
+	public int setAge(Integer age) {
+		return this.age = age;
 	}
 	
 	
